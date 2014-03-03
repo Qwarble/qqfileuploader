@@ -1,7 +1,7 @@
 qqfileuploader
 ==============
 ## About
-qqfileuploader is modx package. It replaces basic upload manager in Files Tab (not in rich text editors!) by [valum Ajax file uploader](http://valums-file-uploader.github.io/file-uploader/).
+qqfileuploader is ajax file uploader for modx package. It replaces basic upload file window in Files Tab or file manager  by [valum Ajax file uploader](http://valums-file-uploader.github.io/file-uploader/).
 
 ## Installation
 At first install qqfileuploader package through modx package manager. Then modify file "/manager/assets/modext/widgets/system/modx.tree.directory.js"
@@ -42,7 +42,7 @@ new one:
         this.uploader.show();
     }
 ```
-Now when you click "Upload files" button in Files tree tab, valum file uploader will appear.
+Now when you click "Upload files" button in Files tree tab or in file manager, valum file uploader will appear.
 ## Should work
 * upload to selected mediasource
 * upload to selected catalog
