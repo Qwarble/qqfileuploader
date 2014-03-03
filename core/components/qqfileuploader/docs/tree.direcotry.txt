@@ -1,0 +1,7 @@
+,uploadFiles: function(btn,e) {
+        this.uploader = new Ext.ux.QQUploadDialog.window({
+            source: this.getSource(),
+            path: this.cm.activeNode?this.cm.activeNode.attributes.id:this.root.attributes.id
+        });
+        this.uploader.show();
+    }
