@@ -37,11 +37,16 @@ Original function:
 new one:
 ```javascript
     ,uploadFiles: function(btn,e) {
-        this.uploader = new Ext.ux.QQUploadDialog.window({
-            source: this.getSource(),
-            path: this.cm.activeNode?this.cm.activeNode.attributes.id:this.root.attributes.id
-        });
-        this.uploader.show();
+        if (!this.uploader) {
+            this.uploader = new Ext.ux.QQUploadDialog.window;
+
+            this.uploader.on('show',this.beforeUpload,this);
+            this.uploader.on('uploadsuccess',this.uploadSuccess,this);
+            this.uploader.on('uploaderror',this.uploadError,this);
+            this.uploader.on('uploadfailed',this.uploadFailed,this);
+        }
+        
+        this.uploader.show(btn);
     }
 ```
 Now when you click "Upload files" button in Files tree tab or in file manager, valum file uploader will appear.
