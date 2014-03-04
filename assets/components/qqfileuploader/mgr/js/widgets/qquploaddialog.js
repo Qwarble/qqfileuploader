@@ -12,6 +12,12 @@ Ext.ux.QQUploadDialog.window = function(config) {
 	        }
 	    },
 	    layout: 'fit',
+        params: {
+            action: 'upload'
+            ,wctx: MODx.ctx || ''
+            ,source: this.source
+            ,path: this.path
+        },
 	}
 	config = Ext.applyIf(config || {}, default_config);
 	Ext.ux.QQUploadDialog.window.superclass.constructor.call(this, config);
@@ -20,23 +26,29 @@ Ext.ux.QQUploadDialog.window = function(config) {
 Ext.extend(Ext.ux.QQUploadDialog.window, Ext.Window, {
     listeners: {
         show: function(){
+            self = this;
         	if(this.connectorUrl && this.source != undefined)
-	            new qq.FileUploader({
+	            this.qq = new qq.FileUploader({
 	                element: this.getEl().child('#upload').dom,
 	                action: this.connectorUrl,
-	                params: {
-	                    action: 'ajaxupload'
-	                    ,wctx: MODx.ctx || ''
-	                    ,source: this.source
-	                    ,path: this.path
-	                },
+	                params: this.params,
 	                customHeaders: {
 	                    "modAuth" : MODx.siteId,
 	                },
 	                multipart: true,
+                    onComplete: function(){
+                        // console.log(new Date());
+                        // self.fireEvent('uploadsuccess');
+                    },
 	            });
+
         }
-    }
+    },
+    setBaseParams : function(params)
+    {
+        if(this.qq) this.qq.setParams(params);
+        else this.params = params;
+    },
 });
 
 Ext.reg('modx-qquploaddialog-window', Ext.ux.QQUploadDialog.window);

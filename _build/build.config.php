@@ -5,7 +5,7 @@ define('PKG_NAME', 'qqfileuploader');
 define('PKG_NAME_LOWER', strtolower(PKG_NAME));
 
 define('PKG_VERSION', '0.0.1');
-define('PKG_RELEASE', 'alpha');
+define('PKG_RELEASE', 'dev');
 define('PKG_AUTO_INSTALL', false);
 define('PKG_NAMESPACE_PATH', '{core_path}components/'.PKG_NAME_LOWER.'/');
 
